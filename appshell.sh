@@ -50,7 +50,7 @@ manjaroinstall()
 {
 echo installing apps:
 echo
-sudo pacman -S tilix pacaur uget snapd nano unzip unrar dolphin yay git screenfetch conky conky-manager vlc albert code cmake libreoffice-still cmake htop
+sudo pacman -S tilix pacaur uget snapd nano unzip unrar dolphin yay git screenfetch conky conky-manager vlc albert code cmake libreoffice-still cmake htop adb fastboot
 echo
 ugetint
 removegt
@@ -62,7 +62,7 @@ debianinstall()
 {
 echo installing apps:
 echo
-sudo apt-get install tilix uget snapd nano unzip unrar dolphin git screenfetch conky conky-manager vlc cmake libreoffice-still cmake htop ssh
+sudo apt-get install tilix uget snapd nano unzip unrar dolphin git screenfetch conky conky-manager vlc cmake libreoffice-still cmake htop ssh adb fastboot
 echo
 ugetint
 removegt
