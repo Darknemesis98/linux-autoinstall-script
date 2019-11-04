@@ -1,2 +1,4 @@
 # README
-### this  is just a shell script to install a set of default packages into my pcs
+
+### Shell Script that installs essential packages for Manjaro and Debian/Ubuntu.
+The list of packages will be updated later.
