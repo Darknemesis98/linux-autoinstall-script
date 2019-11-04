@@ -1,4 +1,4 @@
-#!/bin/bash
+/#!/bin/bash
 
 manjaroupdate()
 {
@@ -77,6 +77,12 @@ echo >> $HOME/.bashrc
 echo "#my lines below" >> $HOME/.bashrc
 echo "PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '" >> $HOME/.bashrc
 echo >> $HOME/.bashrc
+
+#adding aliases
+echo 'alias inatall="sudo pacman -S"'>> $HOME/.bashrc
+echo 'alias remove="sudo pacman -R"'>> $HOME/.bashrc
+echo 'alias update="sudo pacman -Syyu"'>> $HOME/.bashrc 
+
 echo "screenfetch" >> $HOME/.bashrc
 echo Done!
 }
