@@ -81,7 +81,14 @@ echo >> $HOME/.bashrc
 #adding aliases
 echo 'alias inatall="sudo pacman -S"'>> $HOME/.bashrc
 echo 'alias remove="sudo pacman -R"'>> $HOME/.bashrc
+echo 'alias update="sudo pacman -Syyu && pacaur -Syu && yay -Syu"'>> $HOME/.bashrc 
 echo 'alias update="sudo pacman -Syyu"'>> $HOME/.bashrc 
+echo 'alias find='sudo pacman -Ss''>> $HOME/.bashrc 
+echo 'alias wttr='curl wttr.in''>> $HOME/.bashrc 
+echo 'alias ls="ls -l"'>> $HOME/.bashrc 
+
+
+
 
 echo "screenfetch" >> $HOME/.bashrc
 echo Done!
