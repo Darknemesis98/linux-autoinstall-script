@@ -39,6 +39,11 @@ rm install_uget_integrator.sh
 echo
 echo uget intergrated
 echo
+
+#gnome scaling
+echo "modifying the scaling factor of gnome."
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.2
+
 }
 
 removegt()
@@ -88,9 +93,6 @@ echo 'alias wttr='curl wttr.in''>> $HOME/.bashrc
 echo 'alias ls="ls -l"'>> $HOME/.bashrc 
 
 
-
-
-echo "screenfetch" >> $HOME/.bashrc
 echo Done!
 }
 

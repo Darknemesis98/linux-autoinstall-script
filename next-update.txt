@@ -1,2 +1,5 @@
 plymouth
 bootsplash
+
+
+scaling factor edit.
