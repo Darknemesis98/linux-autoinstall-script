@@ -145,3 +145,8 @@ if [ $NEW -eq 1 ]
 then bashappend
 else cancel
 fi
+
+sudo snap install clemantine
+sudo snap install atom --classic
+sudo snap install code --classic
+sudo snap install android-studio --classic
