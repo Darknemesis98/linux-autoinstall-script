@@ -55,7 +55,7 @@ manjaroinstall()
 {
 echo installing apps:
 echo
-sudo pacman -S tilix pacaur uget snapd nano unzip unrar dolphin yay git screenfetch conky conky-manager vlc albert code cmake libreoffice-still cmake htop adb fastboot
+sudo pacman -S tilix pacaur uget snapd nano unzip unrar dolphin yay git screenfetch conky conky-manager vlc albert code cmake libreoffice-still cmake htop adb fastboot gtk-engine-murrine gtk-engines
 echo
 ugetint
 removegt
