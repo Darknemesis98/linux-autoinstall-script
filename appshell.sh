@@ -55,7 +55,7 @@ manjaroinstall()
 {
 echo installing apps:
 echo
-sudo pacman -S tilix pacaur uget snapd nano unzip unrar dolphin yay git screenfetch conky conky-manager vlc albert code cmake libreoffice-still cmake htop adb fastboot gtk-engine-murrine gtk-engines
+sudo pacman -S tilix pacaur uget snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot gtk-engine-murrine gtk-engines banner cmatrix figlet gksu gimp
 echo
 ugetint
 removegt
@@ -67,7 +67,7 @@ debianinstall()
 {
 echo installing apps:
 echo
-sudo apt-get install tilix uget snapd nano unzip unrar dolphin git screenfetch conky conky-manager vlc cmake libreoffice-still cmake htop ssh adb fastboot
+sudo apt-get install tilix uget snapd nano unzip unrar dolphin git conky conky-manager vlc cmake libreoffice-still htop ssh adb fastboot banner cmatrix figlet gksu gimp
 echo
 ugetint
 removegt
@@ -146,7 +146,7 @@ then bashappend
 else cancel
 fi
 
-sudo snap install clemantine
+
 sudo snap install atom --classic
 sudo snap install code --classic
 sudo snap install android-studio --classic
