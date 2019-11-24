@@ -1,10 +1,13 @@
 #! /bin/bash
 
-git config --global user.name "Darknemesis98"
-git config --global user.email "hrishikesh.gopakumar@gmail.com"
+input $username
+input $email
+
+git config --global user.name "$username"
+git config --global user.email "$email"
 git config --global color.ui true
 git config --global core.editor emacs
-$ ssh-keygen -t rsa -b 4096 -C "hrishikesh.gopakumar@gmail.com"
+$ ssh-keygen -t rsa -b 4096 -C "$email"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 xclip -sel clip < ~/.ssh/id_rsa.pub
