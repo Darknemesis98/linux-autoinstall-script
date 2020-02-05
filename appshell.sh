@@ -27,18 +27,8 @@ echo Process successfully terinated.
 echo
 }
 
-ugetint()
+gscale()
 {
-echo
-echo installing uget integrator
-echo
-wget https://raw.githubusercontent.com/ugetdm/uget-integrator/master/install/linux/install_uget_integrator.sh
-chmod +x install_uget_integrator.sh
-./install_uget_integrator.sh
-rm install_uget_integrator.sh 
-echo
-echo uget intergrated
-echo
 
 #gnome scaling
 echo "modifying the scaling factor of gnome."
@@ -55,10 +45,10 @@ manjaroinstall()
 {
 echo installing apps:
 echo
-sudo pacman -S tilix pacaur uget snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot gtk-engine-murrine gtk-engines banner cmatrix figlet gksu gimp binutils
+sudo pacman -S tilix pacaur snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot gtk-engine-murrine gtk-engines banner cmatrix figlet gksu gimp binutils
 yay -S ttf-ms-fonts ttf-vitsa-fonts
 echo
-ugetint
+gscale
 removegt
 echo
 }
@@ -68,9 +58,9 @@ debianinstall()
 {
 echo installing apps:
 echo
-sudo apt-get install tilix uget snapd nano unzip unrar dolphin git conky conky-manager vlc cmake libreoffice-still htop ssh adb fastboot banner cmatrix figlet gksu gimp
+sudo apt-get install tilix snapd nano unzip unrar dolphin git conky conky-manager vlc cmake libreoffice-still htop ssh adb fastboot banner cmatrix figlet gksu gimp
 echo
-ugetint
+gscale
 removegt
 echo
 }
