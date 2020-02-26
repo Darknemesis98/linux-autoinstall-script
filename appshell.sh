@@ -141,3 +141,5 @@ fi
 sudo snap install atom --classic
 sudo snap install code --classic
 sudo snap install android-studio --classic
+sublime-text
+zsh zsh-syntax-highlighting autojump
