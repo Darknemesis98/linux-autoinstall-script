@@ -2,4 +2,9 @@ plymouth
 bootsplash
 
 
+
+
+ls /usr/bin/*session
+
+
 scaling factor edit.

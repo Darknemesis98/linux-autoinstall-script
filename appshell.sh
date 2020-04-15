@@ -1,45 +1,15 @@
 /#!/bin/bash
 
-manjaroupdate()
-{
-echo
-echo Update process initiated.
-echo Manjaro updating..
-echo
-sudo pacman-mirrors -f 20
-echo
-sudo pacman -Syu
-}
+DIS="$(cat /etc/*-release | grep -E DISTRIB_ID | cut -b 12-)" 
 
-debianupdate()
-{
-echo
-echo Update process initiated.
-echo debian updating...
-echo
-sudo apt update && sudo apt upgrade
-}
-
-cancel()
-{
-echo
-echo Process successfully terinated.
-echo
-}
 
 gscale()
 {
-
 #gnome scaling
 echo "modifying the scaling factor of gnome."
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.2
-
 }
 
-removegt()
-{
-sudo pacman -R gnome-terminal
-}
 
 manjaroinstall()
 {
@@ -65,10 +35,12 @@ removegt
 echo
 }
 
+
 bashappend()
 {
 echo >> $HOME/.bashrc
 echo >> $HOME/.bashrc
+echo "Bash_edited_darknem">> $HOME/.bashrc
 echo >> $HOME/.bashrc
 echo "#my lines below" >> $HOME/.bashrc
 echo "PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '" >> $HOME/.bashrc
@@ -83,26 +55,19 @@ echo 'alias find='sudo pacman -Ss''>> $HOME/.bashrc
 echo 'alias wttr='curl wttr.in''>> $HOME/.bashrc 
 echo 'alias ls="ls -l"'>> $HOME/.bashrc 
 
-
 echo Done!
 }
 
 installapps()
 {
-if [ $DISTRO -eq 1 ]
+if [ $DIS == "Manjaro" ]
 	then manjaroinstall
-else debianinstall
+fi
+if [ $DIS == "Ubuntu" ]
+	then debianinstall
 fi 
 }
 
-updatedistro()
-{
-if [ $DISTRO -eq 1 ]
-	then manjaroupdate
-elif [ $DISTRO -eq 0 ]
-	then debianupdate
-fi 
-}
 
 #MAIN
 
@@ -110,36 +75,20 @@ echo Hi $USER,
 echo "System info:"
 hostnamectl
 echo 
-echo "1 for manjaro"
-echo "0 for debian/ubuntu"
+echo 
 
-echo "Distro? <manjaro or debian>"
-read  DISTRO
-if [ "$DISTRO" == "" ] 
-	then DISTRO="1"
-fi
-
-echo "Update? <1/0>"
-read UPDATE
-
-if [ $UPDATE -eq 1 ]
-then updatedistro
-else cancel
-fi
 
 installapps
 
-echo "Add bashrc edits? <1/0>"
-read  NEW
-
-if [ $NEW -eq 1 ]
-then bashappend
-else cancel
+if grep Bash_edited_darknem | grep Bash_edited_darknem ~/.bashrc
+then
+	echo ".bashrc is already edited"
+	echo "skipping edits"
 fi
-
+else bashappend
 
 sudo snap install atom --classic
 sudo snap install code --classic
-sudo snap install android-studio --classic
+
 sublime-text
 zsh zsh-syntax-highlighting autojump
