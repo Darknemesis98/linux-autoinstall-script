@@ -1,75 +1,4 @@
-/#!/bin/bash
-
-DIS="$(cat /etc/*-release | grep -E DISTRIB_ID | cut -b 12-)" 
-
-
-gscale()
-{
-#gnome scaling
-echo "modifying the scaling factor of gnome."
-gsettings set org.gnome.desktop.interface text-scaling-factor 1.2
-}
-
-
-manjaroinstall()
-{
-echo installing apps:
-echo
-sudo pacman -S tilix pacaur snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot gtk-engine-murrine gtk-engines banner cmatrix figlet gksu gimp binutils
-yay -S ttf-ms-fonts ttf-vitsa-fonts
-echo
-gscale
-removegt
-echo
-}
-
-
-debianinstall()
-{
-echo installing apps:
-echo
-sudo apt-get install tilix snapd nano unzip unrar dolphin git conky conky-manager vlc cmake libreoffice-still htop ssh adb fastboot banner cmatrix figlet gksu gimp
-echo
-gscale
-removegt
-echo
-}
-
-
-bashappend()
-{
-echo >> $HOME/.bashrc
-echo >> $HOME/.bashrc
-echo "Bash_edited_darknem">> $HOME/.bashrc
-echo >> $HOME/.bashrc
-echo "#my lines below" >> $HOME/.bashrc
-echo "PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;35m\]\w\[\033[1;31m\]\$\[\033[0m\] '" >> $HOME/.bashrc
-echo >> $HOME/.bashrc
-
-#adding aliases
-echo 'alias inatall="sudo pacman -S"'>> $HOME/.bashrc
-echo 'alias remove="sudo pacman -R"'>> $HOME/.bashrc
-echo 'alias update="sudo pacman -Syyu && pacaur -Syu && yay -Syu"'>> $HOME/.bashrc 
-echo 'alias update="sudo pacman -Syyu"'>> $HOME/.bashrc 
-echo 'alias find='sudo pacman -Ss''>> $HOME/.bashrc 
-echo 'alias wttr='curl wttr.in''>> $HOME/.bashrc 
-echo 'alias ls="ls -l"'>> $HOME/.bashrc 
-
-echo Done!
-}
-
-installapps()
-{
-if [ $DIS == "Manjaro" ]
-	then manjaroinstall
-fi
-if [ $DIS == "Ubuntu" ]
-	then debianinstall
-fi 
-}
-
-
-#MAIN
+#!/bin/bash
 
 echo Hi $USER,
 echo "System info:"
@@ -77,18 +6,91 @@ hostnamectl
 echo 
 echo 
 
+#functions
 
-installapps
+pacmanInstall ()
+{
+echo 'installing apps:'
+echo
+sudo pacman -S zsh vim emacs tilix pacaur snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot gtk-engine-murrine gtk-engines banner cmatrix figlet gksu gimp binutils
+yay -S ttf-ms-fonts ttf-vitsa-fonts
+echo
+echo
+}
 
-if grep Bash_edited_darknem | grep Bash_edited_darknem ~/.bashrc
-then
-	echo ".bashrc is already edited"
-	echo "skipping edits"
-fi
-else bashappend
 
-sudo snap install atom --classic
-sudo snap install code --classic
+aptInstall()
+{
+echo 'installing apps:'
+echo
+sudo apt-get install tilix vim emacs zsh snapd nano unzip unrar dolphin git conky-all vlc cmake libreoffice htop ssh adb fastboot cmatrix figlet gimp
+echo
+echo
+}
 
-sublime-text
-zsh zsh-syntax-highlighting autojump
+
+#zshrc-append
+# alias inatall="sudo pacman -S"
+# alias remove="sudo pacman -R"
+# alias update="sudo pacman -Syyu && pacaur -Syu && yay -Syu" 
+# alias update="sudo pacman -Syyu" 
+# alias find='sudo pacman -Ss' 
+# alias wttr='curl wttr.in' 
+# alias ls="ls -l" 
+
+
+
+# TO find out the distribution that is currently installed.
+DIS="$(uname -n)" 
+
+case $DIS in
+
+  ubuntu | pop-os) #Distros with apt package manager
+    echo -n "APT package manager selected."
+    aptInstall
+    ;;
+
+  Arch | Manjaro) #Distros with pacman package management
+    echo -n "PACMAN package manager selected."
+    pacmanInstall
+    ;;
+esac
+
+
+
+read -p "Do you want to proceed to install Code editors? (y/n)?" snapeditor
+case "$snapeditor" in 
+  y|Y ) 
+    echo "yes"
+    sudo snap install code --classic
+    sudo snap install sublime-text --classic
+    ;;
+  n|N )
+    echo "Skipping instlltion.";;
+  * ) echo "invalid";;
+esac
+
+
+read -p "Continue configuring zsh and ohmyzsh? (y/n)?" zshcon
+case "$zshcon" in 
+  y|Y ) 
+    echo "yes"
+    
+    #zsh configurations
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    cp  -rv .zshrc .oh-my-zsh $HOME/
+
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+    ;;
+  n|N )
+    echo "Skipping instlltion.";;
+  * ) echo "invalid";;
+esac
+
+
+echo Completed.
+
+
