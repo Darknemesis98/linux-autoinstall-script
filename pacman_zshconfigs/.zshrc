@@ -111,7 +111,7 @@ alias ff='find . -type f -name'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-
+alias wdunlck=' wdpassport-utils.py -u'
 
 
 
@@ -121,3 +121,14 @@ function acp() {
   git commit -m "$1"
   git push
 }
+
+
+function virtuosoo() {
+bash
+. /opt/cadence/bashrc
+virtuoso & 
+ echo unlocking.
+}
+
+
+uptime | lolcat

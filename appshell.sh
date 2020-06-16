@@ -12,7 +12,7 @@ pacmanInstall ()
 {
 echo 'installing apps:'
 echo
-sudo pacman -S zsh vim emacs tilix pacaur snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot gtk-engine-murrine gtk-engines banner cmatrix figlet gksu gimp binutils
+sudo pacman -S zsh pv vim emacs tilix pacaur snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot banner cmatrix figlet gksu gimp binutils
 yay -S ttf-ms-fonts ttf-vitsa-fonts
 echo
 echo
@@ -23,7 +23,7 @@ aptInstall()
 {
 echo 'installing apps:'
 echo
-sudo apt-get install tilix vim emacs zsh snapd nano unzip unrar dolphin git conky-all vlc cmake libreoffice htop ssh adb fastboot cmatrix figlet gimp
+sudo apt-get install pv tilix vim emacs zsh snapd nano unzip unrar dolphin git conky-all vlc cmake libreoffice htop ssh adb fastboot cmatrix figlet gimp
 echo
 echo
 }
@@ -41,16 +41,16 @@ echo
 
 
 # TO find out the distribution that is currently installed.
-DIS="$(uname -n)" 
-
+DIS=$1
+ 
 case $DIS in
 
-  ubuntu | pop-os) #Distros with apt package manager
+  apt) #Distros with apt package manager
     echo -n "APT package manager selected."
     aptInstall
     ;;
 
-  Arch | Manjaro) #Distros with pacman package management
+  pacman) #Distros with pacman package management
     echo -n "PACMAN package manager selected."
     pacmanInstall
     ;;
@@ -84,10 +84,15 @@ case "$zshcon" in
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
     ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+    git clone git://github.com/wting/autojump.git
+    cd autojump
+    ./install.py
     ;;
+    
   n|N )
     echo "Skipping instlltion.";;
-  * ) echo "invalid";;
+  * ) echo "invalid"
+  	;;
 esac
 
 
