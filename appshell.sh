@@ -12,7 +12,12 @@ pacmanInstall ()
 {
 echo 'installing apps:'
 echo
+<<<<<<< HEAD
 sudo pacman -S zsh pv vim emacs tilix pacaur snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot banner cmatrix figlet gksu gimp binutils
+=======
+sudo pacman -S base-devel
+sudo pacman -S zsh vim emacs tilix pacaur snapd nano unzip unrar yay git conky conky-manager vlc albert cmake libreoffice-still htop adb fastboot gtk-engine-murrine gtk-engines banner cmatrix figlet gksu gimp binutils
+>>>>>>> 439a6a3af14437776c725eb14006e7c73441bd9f
 yay -S ttf-ms-fonts ttf-vitsa-fonts
 echo
 echo
