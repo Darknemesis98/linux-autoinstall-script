@@ -123,15 +123,50 @@ function acp() {
 }
 
 
-function virtuosoo() {
+function virtuosoo {
 bash
 . /opt/cadence/bashrc
 virtuoso & 
  echo unlocking.
 }
 
+function backupnow {
 
- 
+echo 'Backup Script is Running'
+echo
+
+if [ "$1" == "" ]	
+then	
+ echo 'Listing Drives:'
+	echo -------------------------------------------------------------
+	lsblk | grep /m
+	echo -------------------------------------------------------------
+	echo 'Entr the Disk Name:'
+	read -r NameOfDisk
+else  {
+echo "Disk $1 selected from argument" 
+NameOfDisk=$1
+echo
+}
+fi
+
+#cd /media/darknem/$NameOfDisk
+cd /media/darknem/$NameOfDisk || cd /mnt/$NameOfDisk || exit
+echo 'current working directory : '
+pwd
+echo -------------------------------------------------------------
+echo "Listing Directories :"
+ls
+echo -------------------------------------------------------------
+read -p "Enter to Continue"
+echo sudo rsync -avzrP /home/ /media/darknem/lin\ bak/backup_pop_2020_06_18/ --delete -n
+echo -------------------------------------------------------------
+
+echo 'done'
+	
+
+}
+
 
 
 
