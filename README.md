@@ -1,6 +1,6 @@
 # linux-autoinstall-script
 shell script to install by apps for manjro
-# rEFInd theme Regular
+<!-- # rEFInd theme Regular
 
 A simplistic clean and minimal theme for rEFInd
 
@@ -82,3 +82,6 @@ NOTE: this is a fork of munlik's theme since he seems to have abandoned his proj
 **More information**
 
 [rEFInd](http://www.rodsbooks.com/refind/) The official rEFInd website
+
+
+-->
